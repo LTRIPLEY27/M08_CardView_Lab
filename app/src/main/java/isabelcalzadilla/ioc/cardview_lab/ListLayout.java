@@ -1,25 +1,26 @@
 package isabelcalzadilla.ioc.cardview_lab;
 
-import android.graphics.drawable.Icon;
+
 
 // CLASE QUE CONTENDRÁ LOS ELEMENTOS DEFINIDOS EN LA LISTVIEW
 public class ListLayout {
 
-    private String img;
+    private int img;
     private String name;
     private String resume;
 
-    public ListLayout(String img,String name, String resume) {
+    public ListLayout(int img, String name, String resume) {
         this.img = img;
         this.name = name;
         this.resume = resume;
     }
 
-    public String getImg() {
+
+    public int getImg() {
         return img;
     }
 
-    public void setImg(String img) {
+    public void setImg(int img) {
         this.img = img;
     }
 
@@ -38,4 +39,6 @@ public class ListLayout {
     public void setResume(String resume) {
         this.resume = resume;
     }
+
+
 }

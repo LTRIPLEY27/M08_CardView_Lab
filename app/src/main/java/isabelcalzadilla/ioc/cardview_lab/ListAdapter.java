@@ -14,50 +14,46 @@ import java.util.List;
 public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> {
 
     private List<ListLayout> elementos;
-    private LayoutInflater eleInflater;
     private Context context;
 
-    public ListAdapter(List<ListLayout> elementos, Context context) {
-        this.eleInflater = LayoutInflater.from(context);
+    public ListAdapter( Context contexto, List<ListLayout> elementos) {
         this.elementos = elementos;
-        this.context = context;
+        this.context = contexto;
     }
 
+    // CLASE INTERNA VIEWHOLDER QUE MOSTRARA CADA ITEM DENTRO DEL CARD
+    public class ViewHolder extends RecyclerView.ViewHolder {
+
+        private TextView txtName, txtResume;
+        private ImageView img;
+        public ViewHolder(@NonNull View itemView) {
+            super(itemView);
+
+            // INICIALIZA LOS VALORES DE LA INTERFAZ
+            img = itemView.findViewById(R.id.start_image);
+            txtName = itemView.findViewById(R.id.character_name);
+            txtResume = itemView.findViewById(R.id.resume_character);
+        }
+    }
 
     @NonNull
     @Override
-    public ListAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
+    public ListAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int i) {
         // INSTANCIACIÓN DE LA VIEW CON EL VALOR DEL INFLATE(LISTADO DE ELEMENTOS)
-        View v = eleInflater.inflate(R.layout.list_layout, null);
-
-        return new ListAdapter.ViewHolder(v);
+        View v = LayoutInflater.from(context).inflate(R.layout.list_layout, parent, false);
+        return new ViewHolder(v);
     }
 
+    // EL MÉTODO 'ONBIND' SERÁ EL ENCARGADO DE ENLAZAR Y SETTEAR LOS VALORES DE LA CLASE Y LA INTERFAZ
     @Override
-    public void onBindViewHolder(@NonNull ListAdapter.ViewHolder viewHolder, int i) {
-        viewHolder.bindData(elementos.get(i));
+    public void onBindViewHolder(@NonNull ListAdapter.ViewHolder holder, int i) {
+        holder.img.setImageResource(elementos.get(i).getImg());
+        holder.txtName.setText(elementos.get(i).getName());
+        holder.txtResume.setText(elementos.get(i).getResume());
     }
 
     @Override
     public int getItemCount() {
         return elementos.size();
-    }
-
-    // CLASE INTERNA VIEWHOLDER QUE MOSTRARA CADA ITEM DENTRO DEL CARD
-    public class ViewHolder extends  RecyclerView.ViewHolder{
-        ImageView image;
-        TextView name, resume;
-
-        ViewHolder(View item) {
-            super(item);
-            image = item.findViewById(R.id.imageView);
-            name = item.findViewById(R.id.character_name);
-            resume = item.findViewById(R.id.resume_character);
-        }
-
-        // POR CADA ITEM DE LA LISTA
-        void bindData(final ListLayout item) {
-            name.setText(item.getName());
-        }
     }
 }
