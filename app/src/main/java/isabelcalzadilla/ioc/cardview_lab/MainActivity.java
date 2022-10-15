@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.helper.ItemTouchHelper;
+import android.view.View;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -36,7 +37,7 @@ public class MainActivity extends AppCompatActivity {
 
         //new ArrayList(Arrays.asList(
         // llenadp del array de elementos con cada uno de los atributos
-        elements = new ArrayList(Arrays.asList(
+         elements = new ArrayList(Arrays.asList(
                 new ListLayout(R.drawable.fry,"Philip J Fry", "Es el protagonista de Futurama, la serie de animación para televisión creada por Matt Groening, creador de Los Simpson. Fry es un joven repartidor de pizza en el año 1999 que, por accidente, cae en una cámara criogénica y queda congelado por espacio de 1.000 años."),
                 new ListLayout(R.drawable.leela,"Turanga Leela", "Conocida como Leela es la capitana de la nave Planet Express.eela creció en el Orfanato de mínima seguridad Cookieville, por lo tanto, desconoce todo sobre sus padres."),
                 new ListLayout(R.drawable.zoidberg,"John A. Zoidberg", "Es un alienígena parecido a una langosta procedente del planeta Decapod 10. Vive por debajo del umbral de la pobreza y Hermes Conrad le detesta. El doctor Zoidberg es el único al que Santa Claus considera bueno."),
@@ -47,6 +48,8 @@ public class MainActivity extends AppCompatActivity {
                 new ListLayout(R.drawable.zapp,"Zapp Brannigan", "es un General 25 estrellas del Orden Democrático de Planetas, capitán de la nave Nimbus y líder del ejército DOOP.Aunque Zapp se llama a sí mismo un genio, él es en realidad un 'Pomposo bufón' (así llamado por Leela) cuyos planes pudieron haber sido fácilmente ideados por un niño."),
                 new ListLayout(R.drawable.robot_devil,"Beelzebot", "A pesar de su naturaleza malvada, considera que Bender es aún peor que él después de ver algunos de los actos de este último y decir que no hay robots más malos que él, sin embargo, se deja entrever que lo más probable es que Bender tome decisiones influenciadas por él.")
         ));
+
+        // ARRAY NUEVO PARA DEVOLVER EL RESET CON LOS VALORES ORIGINALES
 
         recicler = findViewById(R.id.recicler);
         adapter = new ListAdapter(this, elements);
@@ -108,6 +111,11 @@ public class MainActivity extends AppCompatActivity {
     }
 
     );
+
+    // UNICAMENTE HACEMOS UN LLAMADO AL MÉTODO INICIAL DE LA APP Y NOS RESETTEA LOS VALORES ORIGINALES
+    public void reseting(View view){
+        startApp();
+    }
 
 
 }
