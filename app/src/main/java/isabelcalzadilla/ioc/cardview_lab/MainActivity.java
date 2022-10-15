@@ -1,19 +1,25 @@
 package isabelcalzadilla.ioc.cardview_lab;
 
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.helper.ItemTouchHelper;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
+    // VARIABLES GLOBALES PARA IMPLEMENTAR
     private List<ListLayout> elements;
     private RecyclerView recicler;
     private ListAdapter adapter;
+    private ItemTouchHelper touching;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,5 +46,32 @@ public class MainActivity extends AppCompatActivity {
         recicler.setHasFixedSize(true);
         recicler.setLayoutManager(new LinearLayoutManager(this));
         recicler.setAdapter(adapter);
+
+        touching = new ItemTouchHelper(new ItemTouchHelper
+                .SimpleCallback(ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT |
+                ItemTouchHelper.DOWN | ItemTouchHelper.UP, ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT) {
+                    @Override
+                    public boolean onMove(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder, @NonNull RecyclerView.ViewHolder viewHolder1) {
+
+                        int indiceOriginal = viewHolder.getAdapterPosition();
+                        int indiceNuevo = viewHolder1.getAdapterPosition();
+
+                        Collections.swap(elements, indiceOriginal, indiceNuevo);
+                        adapter.notifyItemMoved(indiceOriginal, indiceNuevo);
+                        return true;
+                    }
+
+                    @Override
+                    public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int i) {
+
+                        elements.remove(viewHolder.getAdapterPosition());
+                        adapter.notifyItemRemoved(viewHolder.getAdapterPosition());
+                    }
+                }
+        );
+
+        touching.attachToRecyclerView(recicler);
     }
+
+
 }
