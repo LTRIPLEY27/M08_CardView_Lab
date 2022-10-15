@@ -1,6 +1,9 @@
 package isabelcalzadilla.ioc.cardview_lab;
 
+import android.annotation.SuppressLint;
+import android.content.DialogInterface;
 import android.support.annotation.NonNull;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -28,8 +31,12 @@ public class MainActivity extends AppCompatActivity {
         startApp();
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     void startApp(){
-        elements = List.of(
+
+        //new ArrayList(Arrays.asList(
+        // llenadp del array de elementos con cada uno de los atributos
+        elements = new ArrayList(Arrays.asList(
                 new ListLayout(R.drawable.fry,"Philip J Fry", "Es el protagonista de Futurama, la serie de animación para televisión creada por Matt Groening, creador de Los Simpson. Fry es un joven repartidor de pizza en el año 1999 que, por accidente, cae en una cámara criogénica y queda congelado por espacio de 1.000 años."),
                 new ListLayout(R.drawable.leela,"Turanga Leela", "Conocida como Leela es la capitana de la nave Planet Express.eela creció en el Orfanato de mínima seguridad Cookieville, por lo tanto, desconoce todo sobre sus padres."),
                 new ListLayout(R.drawable.zoidberg,"John A. Zoidberg", "Es un alienígena parecido a una langosta procedente del planeta Decapod 10. Vive por debajo del umbral de la pobreza y Hermes Conrad le detesta. El doctor Zoidberg es el único al que Santa Claus considera bueno."),
@@ -39,7 +46,7 @@ public class MainActivity extends AppCompatActivity {
                 new ListLayout(R.drawable.hermes,"Hermes Conrad", "Es un burócrata jamaiquino con un don especial para archivar. También es un bailarín olímpico de limbo, sufrió un trauma cuando un niño que era su mayor admirador trato de imitarlo y falleció al romperse la espina, sin embargo es capaz de utilizar su talento cuando hace falta."),
                 new ListLayout(R.drawable.zapp,"Zapp Brannigan", "es un General 25 estrellas del Orden Democrático de Planetas, capitán de la nave Nimbus y líder del ejército DOOP.Aunque Zapp se llama a sí mismo un genio, él es en realidad un 'Pomposo bufón' (así llamado por Leela) cuyos planes pudieron haber sido fácilmente ideados por un niño."),
                 new ListLayout(R.drawable.robot_devil,"Beelzebot", "A pesar de su naturaleza malvada, considera que Bender es aún peor que él después de ver algunos de los actos de este último y decir que no hay robots más malos que él, sin embargo, se deja entrever que lo más probable es que Bender tome decisiones influenciadas por él.")
-        );
+        ));
 
         recicler = findViewById(R.id.recicler);
         adapter = new ListAdapter(this, elements);
@@ -47,31 +54,60 @@ public class MainActivity extends AppCompatActivity {
         recicler.setLayoutManager(new LinearLayoutManager(this));
         recicler.setAdapter(adapter);
 
-        touching = new ItemTouchHelper(new ItemTouchHelper
-                .SimpleCallback(ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT |
-                ItemTouchHelper.DOWN | ItemTouchHelper.UP, ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT) {
-                    @Override
-                    public boolean onMove(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder, @NonNull RecyclerView.ViewHolder viewHolder1) {
-
-                        int indiceOriginal = viewHolder.getAdapterPosition();
-                        int indiceNuevo = viewHolder1.getAdapterPosition();
-
-                        Collections.swap(elements, indiceOriginal, indiceNuevo);
-                        adapter.notifyItemMoved(indiceOriginal, indiceNuevo);
-                        return true;
-                    }
-
-                    @Override
-                    public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int i) {
-
-                        elements.remove(viewHolder.getAdapterPosition());
-                        adapter.notifyItemRemoved(viewHolder.getAdapterPosition());
-                    }
-                }
-        );
-
+        // LLAMADO AL ITEM-TOUCHHELPER PARA HACER DINAMICO CADA TOQUE
+        touching = retrocede;
         touching.attachToRecyclerView(recicler);
+
+        adapter.notifyDataSetChanged();
+
     }
+
+
+    //ItemTouchHelper.SimpleCallback retrocede = new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.RIGHT) {
+    ItemTouchHelper retrocede = new ItemTouchHelper(new ItemTouchHelper
+            .SimpleCallback(ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT |
+            ItemTouchHelper.DOWN | ItemTouchHelper.UP, ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT) {
+
+        // MÉTODO PROPIO PARA CAMBIAR LAS CARDS DE LUGAR
+        @Override
+        public boolean onMove(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder, @NonNull RecyclerView.ViewHolder viewHolder1) {
+            int origin = viewHolder.getAdapterPosition();
+            int destiny = viewHolder1.getAdapterPosition();
+
+            Collections.swap(elements, origin, destiny);
+            adapter.notifyItemMoved(origin, destiny);
+
+            return true;
+        }
+
+        @Override
+        public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int i) {
+
+            // DECLARAMOS UN ALERT-DIALOG PARA VERIFICAR LA DECISIÓN DEL USER Y DAR LA OPCIÓN DE VOLVER ATRÁS, DISPARANCO UN EVENTO ON CLICK PARA CADA DECISION
+            AlertDialog.Builder alert = new AlertDialog.Builder(MainActivity.this);
+            alert.setTitle("Desea eliminar al personaje?");
+            alert.setMessage("Está seguro?");
+            alert.setPositiveButton("Sí", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialogInterface, int i) {
+                    int indice = viewHolder.getAdapterPosition();
+                    elements.remove(indice);
+                    adapter.notifyItemRemoved(indice);
+
+                }
+            });
+
+            alert.setNegativeButton("No", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialogInterface, int i) {
+                    adapter.notifyItemChanged(viewHolder.getAdapterPosition());
+                }
+            });
+            alert.show();
+        }
+    }
+
+    );
 
 
 }
