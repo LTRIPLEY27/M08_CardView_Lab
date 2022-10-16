@@ -3,6 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <!--IMÁGEN CENTRAL DEL PERSONAJE AL CUAL INDICAMOS MAYOR 'DETALLE'-->
     <ImageView
         android:id="@+id/detail_img"
         android:layout_width="286dp"
@@ -12,46 +13,48 @@
         android:layout_alignParentEnd="true"
         android:layout_centerHorizontal="true"
         android:layout_gravity="center"
-        android:layout_marginStart="67dp"
-        android:layout_marginTop="218dp"
-        android:layout_marginEnd="58dp"
+        android:layout_marginStart="66dp"
+        android:layout_marginTop="31dp"
+        android:layout_marginEnd="59dp"
         android:paddingLeft="15dp"
         android:paddingRight="15dp"
         android:src="@drawable/fry" />
 
+    <!--NOMBREL DEL PERSONAJE AL CUAL INDICAMOS MAYOR 'DETALLE'-->
     <TextView
         android:id="@+id/detail_character_name"
-        android:layout_width="321dp"
-        android:layout_height="131dp"
+        android:layout_width="wrap_content"
+        android:layout_height="150dp"
+        android:layout_below="@+id/detail_img"
         android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginStart="53dp"
-        android:layout_marginTop="58dp"
-        android:layout_marginEnd="37dp"
-        android:layout_marginBottom="542dp"
+        android:layout_marginStart="42dp"
+        android:layout_marginTop="26dp"
+        android:layout_marginEnd="41dp"
+        android:layout_marginBottom="341dp"
         android:text="@string/fry"
+        android:textAlignment="center"
         android:textColor="@color/black"
         android:textSize="40sp"
-        android:textAlignment="center"
         android:textStyle="bold" />
 
+    <!--BREVE SINOPSIS DEL PERSONAJE AL CUAL INDICAMOS MAYOR 'DETALLE'-->
     <TextView
         android:id="@+id/detail_resume_character"
         android:layout_width="wrap_content"
-        android:layout_height="241dp"
+        android:layout_height="269dp"
         android:layout_below="@+id/detail_img"
         android:layout_alignParentStart="true"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginStart="38dp"
-        android:layout_marginTop="39dp"
-        android:layout_marginEnd="30dp"
-        android:layout_marginBottom="50dp"
+        android:layout_marginStart="42dp"
+        android:layout_marginTop="198dp"
+        android:layout_marginEnd="43dp"
+        android:layout_marginBottom="51dp"
         android:text="@string/fry_resume"
-        android:textSize="20sp"
+        android:textSize="18sp"
         android:textStyle="italic" />
+
 </RelativeLayout>

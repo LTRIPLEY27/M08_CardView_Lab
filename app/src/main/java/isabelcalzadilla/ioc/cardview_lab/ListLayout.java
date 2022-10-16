@@ -1,7 +1,5 @@
 package isabelcalzadilla.ioc.cardview_lab;
 
-
-
 // CLASE QUE CONTENDRÁ LOS ELEMENTOS DEFINIDOS EN LA LISTVIEW
 public class ListLayout {
 

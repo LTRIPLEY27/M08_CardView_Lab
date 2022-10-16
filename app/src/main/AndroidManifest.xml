@@ -8,10 +8,10 @@
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
         android:icon="@drawable/futurama_title"
-        android:label="@string/app_name"
+        android:label="Futurama_CardView"
         android:roundIcon="@drawable/futurama_title"
         android:supportsRtl="true"
-        android:theme="@style/Theme.CardView_Lab"
+        android:theme="@style/Theme.Futurama_CardView"
         tools:targetApi="31">
         <activity
             android:name=".MainActivity"

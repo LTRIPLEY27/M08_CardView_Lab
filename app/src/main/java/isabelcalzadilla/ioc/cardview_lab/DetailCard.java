@@ -23,6 +23,7 @@ public class DetailCard extends AppCompatActivity {
         callStart();
     }
 
+    // MÉTODO PARA INICIALIZAR LA ACTIVITY DE DETAILS
     void callStart(){
 
         name = findViewById(R.id.detail_character_name);
@@ -31,6 +32,7 @@ public class DetailCard extends AppCompatActivity {
 
         int imag = Integer.parseInt(getIntent().getStringExtra("image"));
 
+        // INICIALIZACIÓN DE LAS VARIABLES PARA UBICAR LAS MISMAS CON LOS VALORES DEL INTENT
         imagen.setImageResource(imag);
         name.setText(getIntent().getStringExtra("name"));
         resumen.setText(getIntent().getStringExtra("resume"));

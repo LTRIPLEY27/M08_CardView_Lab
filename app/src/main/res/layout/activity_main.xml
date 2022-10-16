@@ -6,6 +6,7 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
+    <!--IMÁGEN CENTRAL CON EL 'LOGO' DE FUTURAMA-->
     <ImageView
         android:id="@+id/imageView"
         android:layout_width="337dp"
@@ -17,6 +18,7 @@
         app:layout_constraintVertical_bias="0.025"
         app:srcCompat="@drawable/futurama_title" />
 
+    <!--DECLARACIÓN DEL RECYCLER DONDE SE UBICARA CADA ITEM-->
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recicler"
         android:layout_width="346dp"
@@ -28,18 +30,20 @@
         app:layout_constraintTop_toBottomOf="@+id/imageView"
         app:layout_constraintVertical_bias="0.698" />
 
+    <!--DECLARACIÓN DEL FLOATING BUTTON-->
     <android.support.design.widget.FloatingActionButton
-        android:layout_width="56dp"
-        android:layout_height="46dp"
+        android:layout_width="53dp"
+        android:layout_height="60dp"
         android:layout_margin="16dp"
-        android:layout_marginEnd="16dp"
+        android:onClick="reseting"
         android:src="@drawable/ic_reset"
         android:tint="@color/white"
-        android:onClick="reseting"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.084"
+        app:layout_constraintVertical_bias="1.0"
         tools:ignore="MissingConstraints" />
 
 </android.support.constraint.ConstraintLayout>
