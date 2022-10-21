@@ -55,6 +55,7 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    //  ******   TASK 2.5 : ADICIÓN DE IMÁGENES AL PROYECTO, ADEMÁS DE OTRAS PROPIEDADES  ******
     //MÉTODO QUE REALIZA EL LLENADO CON DATOS DE LOS ITEMS A MOSTRAR
     ArrayList chargeCharacters(){
 
@@ -82,8 +83,8 @@ public class MainActivity extends AppCompatActivity {
         ));
     }
 
+    //  ******   TASK 3 :  DECLARACIÓN DEL ITEMTOUCH DECLARADO EN EL MÉTODO ANTERIOR PARA REALIZAR CADA ACCIÓN QUE LO COMPRENDA.  ******
 
-    //DECLARACIÓN DEL ITEMTOUCH DECLARADO EN EL MÉTODO ANTERIOR PARA REALIZAR CADA ACCIÓN QUE LO COMPRENDA.
     /*
     * EL ITEM-TOUCH COMPRENDE LAS SIGUIENTES ACCIONES:
     * LEFT : SI SE DESLIZA A LA IZQUIERDA LLAMA A UN EVENTO (EN ÉSTE CASO 'ELIMINAR ITEM') --> 'onSwipe'
@@ -141,6 +142,7 @@ public class MainActivity extends AppCompatActivity {
 
     );
 
+    //  ******   TASK 3.4 :  IMPLEMENTACIÓN DEL ONCLICK LISTENER PARA LLAMAR AL DETAIL  ******
     // UNICAMENTE HACEMOS UN LLAMADO AL MÉTODO INICIAL DE LA APP Y NOS RESETTEA LOS VALORES ORIGINALES
     public void reseting(View view){
         startApp();

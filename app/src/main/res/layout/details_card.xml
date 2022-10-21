@@ -2,7 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
-
+<!-- TASK 3.3 : IMPLEMENTACIÓN DEL LAYOUT PARA DETAIL.-->
     <!--IMÁGEN CENTRAL DEL PERSONAJE AL CUAL INDICAMOS MAYOR 'DETALLE'-->
     <ImageView
         android:id="@+id/detail_img"

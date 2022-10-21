@@ -38,8 +38,12 @@ dependencies {
     //implementation 'androix.cardview:cardview:1.0.0'
     //noinspection GradleCompatible
     implementation 'com.android.support:recyclerview-v7:28.0.0'
+
+    //  ******   TASK 2 : ADICIÓN DE LA DEPENDENCIA CARDVIEW AL PROYECTO   ******
     //noinspection GradleCompatible
     implementation 'com.android.support:cardview-v7:28.0.0'
+
+    //  ******   TASK 4 : ADICIÓN DE LA DEPENDENCIA MATERIAL DESIGN  ******
     //noinspection GradleCompatible
     implementation 'com.android.support:design:28.0.0'
 
